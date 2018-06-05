@@ -7,7 +7,8 @@
                 <p>published: {{ post.published_date }}</p>
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text | safe | linebreaksbr }}</p>
+            <p>{{ post.text | safe | truncatewords:60 }}</p>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a> <!--Adiciona contador de comentários -->
         </div>
     {% endfor %}
 {% endblock %}
