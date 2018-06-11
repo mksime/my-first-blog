@@ -15,9 +15,7 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text | safe | linebreaksbr }}</p> <!--" | safe | " no lugar de "|" possibilita o uso de hyperlinks no formato "<a href="yourlink.com">your link</a> " dentro do formulário-->
-        
-    </div>
-    <hr> <!--Cria uma linha para separar o post dos comentários-->
+        <hr> <!--Cria uma linha para separar o post dos comentários-->
         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Me conte o que você achou!</a> <!--Cria um botão para abrir o formulário de comentário, com o texto "Me conte o que você achou!"-->
         {% for comment in post.comments.all %} <!--Procura os comentários e, se houver algum, percorre-os-->
             {% if user.is_authenticated or comment.approved_comment %} <!--Exibe somente os comentários aprovados, a não ser que você esteja logado-->
@@ -36,4 +34,5 @@
         {% empty %}
             <p>Ainda não há comentários.</p> <!--Se não houver comentários exibe esse texto-->
         {% endfor %}
+    </div>
 {% endblock %}
